@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <title>🚗 Smart Parking System</title>
+  <link rel="stylesheet" href="minimal-theme.css">
+
+</head>
+<body class="page-load">
+  <!-- Page Transition Overlay -->
+  <div class="page-transition" id="pageTransition"></div>
+  
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-brand">
+        <span class="brand-text">Smart Parking</span>
+      </div>
+      <div class="nav-menu">
+        <a href="index.html" class="nav-link">Home</a>
+        <a href="#dashboard" class="nav-link active">Dashboard</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Main Container -->
+  <div class="main-container">
+    <!-- Hero Section -->
+    <div class="hero-section">
+      <div class="dashboard-header">
+
+        <h1 class="hero-title" style="display: flex; align-items: center; justify-content: center;">
+           <img src="carlogo.png" alt="Car Logo" class="car-logo-animated" style="width: 50px; height: 50px; margin-right: 20px;">
+           Smart Parking Dashboard
+         </h1>
+        <div class="dashboard-subtitle">ระบบจัดการที่จอดรถอัจฉริยะ</div>
+        <div class="dashboard-status">
+          <div class="status-dot"></div>
+          <span>ระบบทำงานปกติ</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats Dashboard -->
+    <div class="dashboard-section">
+      <h2 class="section-title">ภาพรวมระบบ</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-content">
+            <span class="stat-number" id="totalSpots">0</span>
+            <span class="stat-label">ช่องจอดทั้งหมด</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-content">
+            <span class="stat-number" id="freeSpots">0</span>
+            <span class="stat-label">ว่าง</span>
+          </div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-content">
+            <span class="stat-number" id="occupiedSpots">0</span>
+            <span class="stat-label">เต็ม</span>
+          </div>
+        </div>
+
+
+      </div>
+    </div>
+    <!-- Status Section -->
+    <div class="status-section">
+      <div class="status-card">
+        <div class="status-indicator"></div>
+        <span id="status">กำลังเชื่อมต่อกับระบบ...</span>
+      </div>
+    </div>
+
+    <!-- Parking Spots Section -->
+    <div class="parking-section">
+      <h2 class="section-title">แผนผังช่องจอดรถ</h2>
+      <div class="parking-grid" id="spots"></div>
+    </div>
+
+    <!-- System Info Section -->
+    <div class="info-section">
+      <h2 class="section-title">คู่มือการใช้งาน</h2>
+      <div class="info-cards">
+        <div class="info-card">
+          <h3>ระบบเรียลไทม์</h3>
+          <p>ระบบเชื่อมต่อกับ ESP32 ผ่าน WebSocket เพื่ออัปเดตข้อมูลแบบเรียลไทม์</p>
+        </div>
+        <div class="info-card">
+          <h3>ช่องจอดว่าง</h3>
+          <p>แสดงเป็นสีเขียวเมื่อไม่มีรถจอด</p>
+        </div>
+        <div class="info-card">
+          <h3>ช่องจอดเต็ม</h3>
+          <p>แสดงเป็นสีแดงเมื่อมีรถจอด</p>
+        </div>
+        <div class="info-card">
+          <h3>อัปเดตอัตโนมัติ</h3>
+          <p>ข้อมูลจะอัปเดตโดยอัตโนมัติเมื่อสถานะเปลี่ยนแปลง</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Features Section -->
+    <div class="features-section" id="features">
+      <h2 class="section-title">คุณสมบัติเด่น</h2>
+      <div class="features-grid">
+        <div class="feature-card">
+          <div class="feature-icon">⚡</div>
+          <h3>ระบบอัจฉริยะ</h3>
+          <p>ตรวจสอบสถานะช่องจอดรถแบบเรียลไทม์ด้วยเซ็นเซอร์ที่ทันสมัย</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📱</div>
+          <h3>ใช้งานง่าย</h3>
+          <p>อินเทอร์เฟซที่เรียบง่าย ใช้งานง่าย เข้าใจได้ทันที</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔔</div>
+          <h3>การแจ้งเตือน</h3>
+          <p>รับการแจ้งเตือนเมื่อช่องจอดเต็ม</p>
+          <button onclick="sendNotification('🧪 ทดสอบการแจ้งเตือน', 'นี่คือการแจ้งเตือนทดสอบ', '🔔')" style="margin-top: 10px; padding: 8px 16px; background: var(--accent-color); color: white; border: none; border-radius: 5px; cursor: pointer;">ทดสอบการแจ้งเตือน</button>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">⏰</div>
+          <h3>ประหยัดเวลา</h3>
+          <p>ค้นหาช่องจอดรถว่างได้อย่างรวดเร็ว ไม่ต้องเสียเวลาหาที่จอด</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🔒</div>
+          <h3>ปลอดภัย</h3>
+          <p>ระบบรักษาความปลอดภัยที่เชื่อถือได้ ข้อมูลของคุณจะปลอดภัย</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">🌐</div>
+          <h3>เข้าถึงได้ทุกที่</h3>
+          <p>ใช้งานได้ผ่านเว็บเบราว์เซอร์ ไม่ต้องติดตั้งแอปพลิเคชัน</p>
+        </div>
+        <div class="feature-card">
+          <div class="feature-icon">📊</div>
+          <h3>รายงานสถิติ</h3>
+          <p>ดูสถิติการใช้งานและรายงานต่างๆ ได้อย่างละเอียด</p>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2025 Smart Parking System. สงวนลิขสิทธิ์.</p>
+  </footer>
+  
+  <script src="script.js"></script>
+  
+  <script>
+    // Page load animation
+    function initPageLoad() {
+      const transition = document.getElementById('pageTransition');
+      const mainContainer = document.querySelector('.main-container');
+      
+      // Hide transition overlay with fade effect
+      if (transition) {
+        setTimeout(() => {
+          transition.style.opacity = '0';
+          setTimeout(() => {
+            transition.style.visibility = 'hidden';
+          }, 300);
+        }, 100);
+      }
+      
+      // Add fade-in animation to main content
+      if (mainContainer) {
+        mainContainer.style.opacity = '0';
+        mainContainer.style.transform = 'translateY(20px)';
+        mainContainer.style.transition = 'all 0.6s ease-out';
+        
+        setTimeout(() => {
+          mainContainer.style.opacity = '1';
+          mainContainer.style.transform = 'translateY(0)';
+        }, 300);
+      }
+      
+      // Remove page-load class
+      setTimeout(() => {
+        document.body.classList.remove('page-load');
+      }, 200);
+    }
+    
+    // Smooth transition for navigation links
+    function setupNavTransitions() {
+      const navLinks = document.querySelectorAll('.nav-link');
+      
+      navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          
+          // Only handle transitions for different pages
+          if (href && href !== '#dashboard' && !href.startsWith('#')) {
+            e.preventDefault();
+            
+            const transition = document.getElementById('pageTransition');
+            const mainContainer = document.querySelector('.main-container');
+            
+            // Fade out current content
+            if (mainContainer) {
+              mainContainer.style.opacity = '0';
+              mainContainer.style.transform = 'translateY(-20px)';
+              mainContainer.style.transition = 'all 0.4s ease-out';
+            }
+            
+            // Show transition overlay
+            if (transition) {
+              transition.style.opacity = '1';
+              transition.style.visibility = 'visible';
+            }
+            
+            // Navigate after animation
+            setTimeout(() => {
+              window.location.href = href;
+            }, 400);
+          }
+        });
+      });
+    }
+    
+    // Initialize on page load
+    window.addEventListener('load', () => {
+      initPageLoad();
+      setupNavTransitions();
+    });
+    
+    window.addEventListener('DOMContentLoaded', () => {
+      initPageLoad();
+      setupNavTransitions();
+    });
+    
+    // Fallback
+    setTimeout(() => {
+      initPageLoad();
+      setupNavTransitions();
+    }, 1000);
+  </script>
+</body>
+</html>

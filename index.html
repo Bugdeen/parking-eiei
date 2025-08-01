@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SMART PARKING FOR TEACHER</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+    
+    :root {
+      --primary-color: #ffffff;
+      --secondary-color: #999;
+      --background-color: #1a1a1a;
+      --card-background: #2d2d2d;
+      --border-color: #404040;
+      --text-primary: #ffffff;
+      --text-secondary: #cccccc;
+      --text-muted: #999;
+      --success-color: #22c55e;
+      --warning-color: #f59e0b;
+      --danger-color: #ef4444;
+      --shadow-light: 0 1px 3px rgba(255, 255, 255, 0.1);
+      --shadow-medium: 0 4px 6px rgba(255, 255, 255, 0.1);
+      --border-radius: 8px;
+      --transition: all 0.2s ease;
+    }
+    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: url('city-map-background.svg') center center / cover no-repeat, var(--background-color);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      max-width: 1200px;
+      padding: 0 1rem;
+      gap: 2rem;
+    }
+    
+    .content {
+      flex: 1;
+      max-width: 500px;
+    }
+    
+    .mountain-icon {
+       font-size: 2rem;
+       margin-bottom: 2rem;
+       color: var(--text-muted);
+     }
+     
+     .main-title {
+       font-size: 3rem;
+       font-weight: 800;
+       color: var(--text-primary);
+       line-height: 1.1;
+       margin-top: -1rem;
+       margin-bottom: 2rem;
+       letter-spacing: -0.02em;
+       opacity: 0;
+       transform: translateX(-50px);
+       animation: slideInFromLeft 1s ease-out 0.5s forwards;
+     }
+     
+     @keyframes slideInFromLeft {
+       to {
+         opacity: 1;
+         transform: translateX(0);
+       }
+     }
+     
+     .author-section {
+       display: flex;
+       align-items: center;
+       gap: 1rem;
+       margin-bottom: 3rem;
+     }
+     
+     .author-avatar {
+       width: 50px;
+       height: 50px;
+       border-radius: 50%;
+       background: var(--warning-color);
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       font-weight: 600;
+       color: var(--text-primary);
+       font-size: 1.1rem;
+     }
+     
+     .author-name {
+       color: var(--text-primary);
+       font-size: 1.2rem;
+       font-weight: 500;
+     }
+    
+    .cta-button {
+       display: inline-flex;
+       align-items: center;
+       gap: 0.75rem;
+       background: var(--card-background);
+       color: var(--text-primary);
+       padding: 1rem 2rem;
+       border: 1px solid var(--border-color);
+       border-radius: var(--border-radius);
+       text-decoration: none;
+       font-weight: 600;
+       font-size: 1.1rem;
+       transition: var(--transition);
+       box-shadow: var(--shadow-medium);
+     }
+     
+     .cta-button:hover {
+       transform: translateY(-2px);
+       background: var(--primary-color);
+       color: var(--background-color);
+       box-shadow: var(--shadow-medium);
+     }
+    
+    .laptop-section {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    
+    .laptop-container {
+      position: relative;
+      transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
+      transition: transform 0.3s ease;
+    }
+    
+    .laptop-container:hover {
+      transform: perspective(1000px) rotateY(-10deg) rotateX(2deg);
+    }
+    
+    .laptop {
+      width: 480px;
+      height: 300px;
+      background: #2a2a2a;
+      border-radius: 20px 20px 8px 8px;
+      position: relative;
+      animation: laptopAmbientGlow 7s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite alternate;
+    }
+    
+    @keyframes laptopAmbientGlow {
+      0% {
+        opacity: 1;
+      }
+      100% {
+        opacity: 0.9;
+      }
+    }
+    
+    .laptop::before {
+      content: '';
+      position: absolute;
+      top: 18px;
+      left: 18px;
+      right: 18px;
+      bottom: 30px;
+      background: #111;
+      border-radius: 8px;
+      z-index: 1;
+    }
+    
+    .laptop-screen {
+       position: absolute;
+       top: 18px;
+       left: 18px;
+       right: 18px;
+       bottom: 30px;
+       border-radius: 8px;
+       overflow: hidden;
+       z-index: 2;
+       border: 3px solid #444;
+       background: #222;
+        animation: screenGlow 6s cubic-bezier(0.4, 0, 0.6, 1) infinite alternate;
+     }
+    
+    @keyframes screenGlow {
+       0% {
+         opacity: 1;
+       }
+       25% {
+          opacity: 0.95;
+        }
+       50% {
+          opacity: 0.9;
+        }
+        75% {
+          opacity: 0.95;
+        }
+        100% {
+          opacity: 1;
+        }
+     }
+    
+    .laptop-screen iframe {
+      border-radius: 6px;
+    }
+    
+    .laptop::after {
+      content: '';
+      position: absolute;
+      bottom: -25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 25px;
+      background: linear-gradient(135deg, #2a2a2a, #404040);
+      border-radius: 0 0 15px 15px;
+      box-shadow: 
+        0 8px 20px rgba(0, 0, 0, 0.4),
+        inset 0 2px 4px rgba(255, 255, 255, 0.1);
+      border: 1px solid #333;
+    }
+    
+    .laptop-glow {
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: -20px;
+      bottom: -20px;
+      background: 
+        radial-gradient(circle at 50% 30%, rgba(59, 130, 246, 0.08), transparent 50%),
+        radial-gradient(circle at 30% 70%, rgba(236, 72, 153, 0.05), transparent 40%),
+        radial-gradient(circle at 70% 60%, rgba(16, 185, 129, 0.03), transparent 45%);
+      border-radius: 50px;
+      z-index: -1;
+      animation: colorShift 8s cubic-bezier(0.25, 0.46, 0.45, 0.94) infinite;
+    }
+    
+    @keyframes colorShift {
+      0% {
+        background: 
+          radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 60%),
+          radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.08) 0%, transparent 60%),
+          radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.06) 0%, transparent 60%),
+          radial-gradient(circle at 60% 70%, rgba(245, 158, 11, 0.05) 0%, transparent 60%);
+      }
+      25% {
+        background: 
+          radial-gradient(circle at 60% 30%, rgba(236, 72, 153, 0.1) 0%, transparent 60%),
+          radial-gradient(circle at 30% 70%, rgba(16, 185, 129, 0.08) 0%, transparent 60%),
+          radial-gradient(circle at 70% 60%, rgba(245, 158, 11, 0.06) 0%, transparent 60%),
+          radial-gradient(circle at 10% 10%, rgba(168, 85, 247, 0.05) 0%, transparent 60%);
+      }
+      50% {
+        background: 
+          radial-gradient(circle at 80% 80%, rgba(16, 185, 129, 0.1) 0%, transparent 60%),
+          radial-gradient(circle at 20% 20%, rgba(245, 158, 11, 0.08) 0%, transparent 60%),
+          radial-gradient(circle at 50% 90%, rgba(168, 85, 247, 0.06) 0%, transparent 60%),
+          radial-gradient(circle at 90% 40%, rgba(59, 130, 246, 0.05) 0%, transparent 60%);
+      }
+      75% {
+        background: 
+          radial-gradient(circle at 40% 20%, rgba(245, 158, 11, 0.1) 0%, transparent 60%),
+          radial-gradient(circle at 70% 80%, rgba(168, 85, 247, 0.08) 0%, transparent 60%),
+          radial-gradient(circle at 10% 50%, rgba(59, 130, 246, 0.06) 0%, transparent 60%),
+          radial-gradient(circle at 85% 15%, rgba(236, 72, 153, 0.05) 0%, transparent 60%);
+      }
+      100% {
+        background: 
+          radial-gradient(circle at 20% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 60%),
+          radial-gradient(circle at 80% 20%, rgba(236, 72, 153, 0.25) 0%, transparent 60%),
+          radial-gradient(circle at 40% 40%, rgba(16, 185, 129, 0.2) 0%, transparent 60%),
+          radial-gradient(circle at 60% 70%, rgba(245, 158, 11, 0.15) 0%, transparent 60%);
+      }
+    }
+    
+    /* Responsive Design */
+    @media (max-width: 768px) {
+      .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 2rem;
+        padding: 2rem 1rem;
+      }
+      
+      .main-title {
+        font-size: 3rem;
+      }
+      
+      .laptop {
+        width: 350px;
+        height: 220px;
+      }
+      
+      .laptop-screen {
+        top: 12px;
+        left: 12px;
+        right: 12px;
+        bottom: 20px;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .main-title {
+        font-size: 2.5rem;
+      }
+      
+      .laptop {
+        width: 280px;
+        height: 175px;
+      }
+      
+      .laptop-screen {
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        bottom: 18px;
+      }
+    }
+    
+    /* Page Transition Animations */
+    .page-fade-in {
+      animation: fadeIn 0.8s ease-out;
+    }
+    
+    .page-fade-out {
+      animation: fadeOut 0.5s ease-in forwards;
+    }
+    
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    @keyframes fadeOut {
+      from {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      to {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+    }
+    
+    /* Initial state - hidden */
+    body {
+      opacity: 0;
+    }
+  </style>
+</head>
+<body class="page-fade-in">
+  <div class="container">
+    <div class="content">
+      <div class="mountain-icon"></div>
+      <h1 class="main-title">SMART PARKING<br>FOR TEACHERS</h1>
+      <div class="author-section">
+        <div class="author-avatar">
+          <img src="ben2logo.jpg" alt="Ben2 Logo" style="width: 100%; height: 100%; object-fit: cover; border-radius: 50%;">
+        </div>
+        <span class="author-name">Benchamaratrungsarit 2</span>
+      </div>
+      <a href="index002.html" class="cta-button">
+        <span>Enter Dashboard</span>
+        <span>→</span>
+      </a>
+    </div>
+    
+    <div class="laptop-section">
+      <div class="laptop-container">
+        <div class="laptop">
+          <div class="laptop-screen">
+            <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/mPzKd7q50F8?si=MxYbwavgcQv5uSky&controls=0&autoplay=1&loop=1&playlist=mPzKd7q50F8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+          </div>
+          <div class="laptop-glow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <script>
+    // Page load animation
+    window.addEventListener('load', function() {
+      document.body.style.opacity = '1';
+    });
+    
+    // Page transition on button click
+    document.addEventListener('DOMContentLoaded', function() {
+      const ctaButton = document.querySelector('.cta-button');
+      
+      if (ctaButton) {
+        ctaButton.addEventListener('click', function(e) {
+          e.preventDefault();
+          const href = this.getAttribute('href');
+          
+          // Add fade out animation
+          document.body.classList.remove('page-fade-in');
+          document.body.classList.add('page-fade-out');
+          
+          // Navigate after animation completes
+          setTimeout(function() {
+            window.location.href = href;
+          }, 500);
+        });
+      }
+    });
+  </script>
+</body>

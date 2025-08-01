@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800">
+  <defs>
+    <style>
+      .map-bg { fill: #1a1a1a; }
+      .road-main { stroke: #2a2a2a; stroke-width: 2; fill: none; opacity: 0.6; }
+      .road-secondary { stroke: #222; stroke-width: 1.5; fill: none; opacity: 0.5; }
+      .road-minor { stroke: #1a1a1a; stroke-width: 0.8; fill: none; opacity: 0.4; }
+      .river { fill: #333; opacity: 0.3; }
+      .building-block { fill: #1a1a1a; stroke: #222; stroke-width: 0.3; opacity: 0.4; }
+    </style>
+  </defs>
+  
+  <!-- Background -->
+  <rect class="map-bg" width="1200" height="800"/>
+  
+  <!-- River -->
+  <path class="river" d="M400 0 Q450 100 500 200 Q550 300 600 400 Q650 500 700 600 Q750 700 800 800 L850 800 Q800 700 750 600 Q700 500 650 400 Q600 300 550 200 Q500 100 450 0 Z"/>
+  
+  <!-- Building blocks -->
+  <rect class="building-block" x="50" y="50" width="80" height="60"/>
+  <rect class="building-block" x="150" y="40" width="90" height="70"/>
+  <rect class="building-block" x="260" y="60" width="70" height="50"/>
+  <rect class="building-block" x="350" y="30" width="60" height="80"/>
+  <rect class="building-block" x="50" y="150" width="100" height="80"/>
+  <rect class="building-block" x="170" y="160" width="80" height="60"/>
+  <rect class="building-block" x="270" y="140" width="90" height="90"/>
+  <rect class="building-block" x="380" y="170" width="70" height="50"/>
+  
+  <rect class="building-block" x="900" y="50" width="80" height="60"/>
+  <rect class="building-block" x="1000" y="40" width="90" height="70"/>
+  <rect class="building-block" x="1110" y="60" width="70" height="50"/>
+  <rect class="building-block" x="900" y="150" width="100" height="80"/>
+  <rect class="building-block" x="1020" y="160" width="80" height="60"/>
+  <rect class="building-block" x="1120" y="140" width="70" height="90"/>
+  
+  <rect class="building-block" x="50" y="600" width="80" height="60"/>
+  <rect class="building-block" x="150" y="620" width="90" height="70"/>
+  <rect class="building-block" x="260" y="610" width="70" height="50"/>
+  <rect class="building-block" x="350" y="630" width="60" height="80"/>
+  <rect class="building-block" x="50" y="700" width="100" height="80"/>
+  <rect class="building-block" x="170" y="720" width="80" height="60"/>
+  <rect class="building-block" x="270" y="710" width="90" height="70"/>
+  
+  <rect class="building-block" x="900" y="600" width="80" height="60"/>
+  <rect class="building-block" x="1000" y="620" width="90" height="70"/>
+  <rect class="building-block" x="1110" y="610" width="70" height="50"/>
+  <rect class="building-block" x="900" y="700" width="100" height="80"/>
+  <rect class="building-block" x="1020" y="720" width="80" height="60"/>
+  
+  <!-- Main roads -->
+  <path class="road-main" d="M0 200 L1200 200"/>
+  <path class="road-main" d="M0 400 L1200 400"/>
+  <path class="road-main" d="M0 600 L1200 600"/>
+  <path class="road-main" d="M200 0 L200 800"/>
+  <path class="road-main" d="M500 0 L500 800"/>
+  <path class="road-main" d="M800 0 L800 800"/>
+  <path class="road-main" d="M1000 0 L1000 800"/>
+  
+  <!-- Secondary roads -->
+  <path class="road-secondary" d="M0 100 L1200 100"/>
+  <path class="road-secondary" d="M0 300 L1200 300"/>
+  <path class="road-secondary" d="M0 500 L1200 500"/>
+  <path class="road-secondary" d="M0 700 L1200 700"/>
+  <path class="road-secondary" d="M100 0 L100 800"/>
+  <path class="road-secondary" d="M350 0 L350 800"/>
+  <path class="road-secondary" d="M650 0 L650 800"/>
+  <path class="road-secondary" d="M900 0 L900 800"/>
+  <path class="road-secondary" d="M1100 0 L1100 800"/>
+  
+  <!-- Minor roads -->
+  <path class="road-minor" d="M0 50 L1200 50"/>
+  <path class="road-minor" d="M0 150 L1200 150"/>
+  <path class="road-minor" d="M0 250 L1200 250"/>
+  <path class="road-minor" d="M0 350 L1200 350"/>
+  <path class="road-minor" d="M0 450 L1200 450"/>
+  <path class="road-minor" d="M0 550 L1200 550"/>
+  <path class="road-minor" d="M0 650 L1200 650"/>
+  <path class="road-minor" d="M0 750 L1200 750"/>
+  
+  <path class="road-minor" d="M50 0 L50 800"/>
+  <path class="road-minor" d="M150 0 L150 800"/>
+  <path class="road-minor" d="M250 0 L250 800"/>
+  <path class="road-minor" d="M300 0 L300 800"/>
+  <path class="road-minor" d="M400 0 L400 800"/>
+  <path class="road-minor" d="M550 0 L550 800"/>
+  <path class="road-minor" d="M600 0 L600 800"/>
+  <path class="road-minor" d="M700 0 L700 800"/>
+  <path class="road-minor" d="M750 0 L750 800"/>
+  <path class="road-minor" d="M850 0 L850 800"/>
+  <path class="road-minor" d="M950 0 L950 800"/>
+  <path class="road-minor" d="M1050 0 L1050 800"/>
+  <path class="road-minor" d="M1150 0 L1150 800"/>
+  
+  <!-- Diagonal roads -->
+  <path class="road-minor" d="M0 0 L400 400"/>
+  <path class="road-minor" d="M800 0 L1200 400"/>
+  <path class="road-minor" d="M0 400 L400 800"/>
+  <path class="road-minor" d="M800 400 L1200 800"/>
+  <path class="road-minor" d="M400 0 L0 400"/>
+  <path class="road-minor" d="M1200 0 L800 400"/>
+  <path class="road-minor" d="M400 400 L0 800"/>
+  <path class="road-minor" d="M1200 400 L800 800"/>
+</svg>
