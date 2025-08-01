@@ -1,5 +1,5 @@
 // ⚡ ใส่ IP ของ ESP32 ที่ Serial Monitor แสดง
-const wss = new WebSocket("ws://172.20.10.12:81"); 
+const wss = new WebSocket("wss://172.20.10.12:81"); 
 
 // ขอสิทธิ์การแจ้งเตือน
 if ('Notification' in window) {
