@@ -1,5 +1,5 @@
 // ⚡ ใส่ IP ของ ESP32 ที่ Serial Monitor แสดง
-const ws = new WebSocket("ws://172.20.10.12:81"); 
+const wss = new WebSocket("ws://172.20.10.12:81"); 
 
 // ขอสิทธิ์การแจ้งเตือน
 if ('Notification' in window) {
@@ -26,22 +26,22 @@ function sendNotification(title, message, icon = '🚗') {
   }
 }
 
-ws.onopen = () => {
+wss.onopen = () => {
   console.log("Connected to ESP32");
   document.getElementById("status").textContent = "เชื่อมต่อกับระบบสำเร็จ";
 };
 
-ws.onerror = (error) => {
+wss.onerror = (error) => {
   console.error("WebSocket Error:", error);
   document.getElementById("status").textContent = "ไม่สามารถเชื่อมต่อกับระบบ";
 };
 
-ws.onclose = () => {
+wss.onclose = () => {
   console.warn("WebSocket Closed");
   document.getElementById("status").textContent = "การเชื่อมต่อถูกปิด";
 };
 
-ws.onmessage = (event) => {
+wss.onmessage = (event) => {
   console.log("Data from ESP32:", event.data);
   const data = JSON.parse(event.data);
 
